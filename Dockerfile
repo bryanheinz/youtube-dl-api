@@ -3,7 +3,8 @@ FROM alpine:3.9.5
 RUN apk update && apk add \
     python3 \
     py3-flask \
-    && pip3 install youtube_dl
+    && wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl \
+    && chmod a+rx /usr/local/bin/youtube-dl
 
 COPY ./app /app
 
