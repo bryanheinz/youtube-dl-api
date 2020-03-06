@@ -6,3 +6,4 @@ Podfile.lock
 Pods
 *.xcworkspace
 videos/*
+ydl.conf
