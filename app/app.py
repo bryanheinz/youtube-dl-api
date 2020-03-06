@@ -62,14 +62,16 @@ def youtube_dl():
             status=400
         )))
     
-    try:
-        youtubes.dl(url)
-    except Exception as e:
-        print(e)
-        raise(abort(Response(
-            "internal server error",
-            status=500
-        )))
+    youtubes.dl(url)
+    
+    # try:
+    #     youtubes.dl(url)
+    # except Exception as e:
+    #     print(e)
+    #     raise(abort(Response(
+    #         "internal server error",
+    #         status=500
+    #     )))
     
     return(Response(status=200))
 
