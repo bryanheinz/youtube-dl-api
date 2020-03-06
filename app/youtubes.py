@@ -28,7 +28,7 @@ def dl(url):
     print("Downloading {}".format(url.decode('utf-8')))
     cmd = [
         '/usr/bin/python3', '/usr/local/bin/youtube-dl', '-w',
-        '-f', '(bestvideo[ext=mp4]+bestaudio[ext=m4a])',
+        '-f', '(best[ext=mp4]/best)',
         '-o', os.path.join(config['dl_path'], '%(title)s.%(ext)s'),
         url.decode('utf-8')
     ]
