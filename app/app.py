@@ -22,7 +22,7 @@ api_key = api_key
 def checkAppKey(fn):
     def inner(*args, **kwargs):
         try:
-            key = request.headers.get('apikey')
+            key = request.headers.get('api_key')
             if key != api_key:
                 raise(abort(
                     Response("access denied", status=401)
