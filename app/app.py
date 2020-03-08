@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import os
-import youtubes
+import youdl
 import app_config
 import base64 as b64
 from flask import Flask, render_template, redirect, request, jsonify, abort, Response
@@ -62,7 +62,7 @@ def youtube_dl():
     #         status=400
     #     )))
     
-    youtubes.dl(url)
+    youdl.dl(url)
     
     # try:
     #     youtubes.dl(url)
