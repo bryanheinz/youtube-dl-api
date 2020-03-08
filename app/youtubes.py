@@ -25,7 +25,7 @@ def termy(cmd):
 
 # TODO: add videos path as a config item
 def dl(url):
-    print("Downloading {}".format(url.decode('utf-8')))
+    print("Downloading {}".format(url))
     cmd = [
         '/usr/bin/python3', '/usr/local/bin/youtube-dl', '-w',
         '-f', '(bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best)',
