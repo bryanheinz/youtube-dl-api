@@ -31,7 +31,7 @@ def dl(url):
         '-f', '(bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best)',
         '--merge-output-format', 'mp4',
         '-o', os.path.join(config['dl_path'], '%(title)s.%(ext)s'),
-        url.decode('utf-8')
+        url
     ]
     t = threading.Thread(target=termy, args=(cmd,), daemon=True)
     t.start()
