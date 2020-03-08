@@ -12,7 +12,7 @@ services:
         volumes: 
             - ./videos:/videos
             - ./ydl.conf:/app/ydl.conf
-            - ./app:/app
+            # - ./app:/app
 
 # ydl.conf
 # either manually create a config file like this:
