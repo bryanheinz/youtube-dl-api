@@ -53,28 +53,19 @@ def youtube_dl():
             status=400
         )))
     
-    # try:
-    #     url = b64.b64decode(url)
-    # except Exception as e:
-    #     print(e)
-    #     raise(abort(Response(
-    #         "please base64 encode your url",
-    #         status=400
-    #     )))
+    # youdl.dl(url)
     
-    youdl.dl(url)
-    
-    # try:
-    #     youtubes.dl(url)
-    # except Exception as e:
-    #     print(e)
-    #     raise(abort(Response(
-    #         "internal server error",
-    #         status=500
-    #     )))
+    try:
+        youtubes.dl(url)
+    except Exception as e:
+        print(e)
+        raise(abort(Response(
+            "internal server error",
+            status=500
+        )))
     
     return(Response(status=200))
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)
