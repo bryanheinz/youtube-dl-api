@@ -53,14 +53,14 @@ def youtube_dl():
             status=400
         )))
     
-    try:
-        url = b64.b64decode(url)
-    except Exception as e:
-        print(e)
-        raise(abort(Response(
-            "please base64 encode your url",
-            status=400
-        )))
+    # try:
+    #     url = b64.b64decode(url)
+    # except Exception as e:
+    #     print(e)
+    #     raise(abort(Response(
+    #         "please base64 encode your url",
+    #         status=400
+    #     )))
     
     youtubes.dl(url)
     
