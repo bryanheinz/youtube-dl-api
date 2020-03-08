@@ -49,14 +49,14 @@ def youtube_dl():
         url = content['url']
     except KeyError:
         raise(abort(Response(
-            "please enclude a base64 encoded URL for the key 'url'",
+            "please include a video URL for the key 'url'.",
             status=400
         )))
     
     # youdl.dl(url)
     
     try:
-        youtubes.dl(url)
+        youdl.dl(url)
     except Exception as e:
         print(e)
         raise(abort(Response(
