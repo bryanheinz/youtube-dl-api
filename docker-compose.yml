@@ -13,14 +13,3 @@ services:
             - ./videos:/videos
             - ./ydl.conf:/app/ydl.conf
             # - ./app:/app
-
-# ydl.conf
-# either manually create a config file like this:
-# [app]
-# api_key = KEY
-# flask_key = KEY
-# dl_path = /videos
-#
-# or run the docker image without passing in the config file and let it generate
-# a config file for you. copy the output text or file and map it in for future
-# use. otherwise your API key will change everytime.
