@@ -5,8 +5,8 @@ This project is a small Python Flask API server to take video URLs and download 
 The easiest way to get setup and running is to use Docker.
 
 - Clone this repo
-- Copy ydl.sample.conf to ydl.conf
-- Edit ydl.conf
+- Copy config-sample to config.py
+- Edit config.py
   - Fill in an API and Flask key (easy mode: generate UUIDs for the keys)
   - Fill in a download path (leave alone if using Docker)
 - Edit docker-compose.yml
@@ -18,7 +18,7 @@ The easiest way to get setup and running is to use Docker.
 Sending requests to the API server:
 
 ```shell
-curl -X "POST" "http://192.168.1.128:5000/youtube-dl" \
+curl -X "POST" "http://0.0.0.0:5000/youtube-dl" \
      -H 'api_key: API_KEY' \
      -H 'Content-Type: application/json; charset=utf-8' \
      -d $'{"url": "https://www.youtube.com/watch?v=3QtklTXbKUQ"}'
