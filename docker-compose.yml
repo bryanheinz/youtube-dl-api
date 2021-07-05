@@ -11,5 +11,4 @@ services:
             - 5000:5000
         volumes: 
             - ./videos:/videos
-            - ./ydl.conf:/app/ydl.conf
-            # - ./app:/app
+            - ./config.py:/app/config.py
