@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 import os
+import config
 import threading
-import app_config
 import subprocess
-
-
-config = app_config.get_config()
 
 
 def termy(cmd):
@@ -20,18 +17,17 @@ def termy(cmd):
             break
     err = task.stderr.read().decode('utf-8')
     output = ''.join(output)
-    print(err)
-    return(output, err)
+    print(err, flush=True)
+    return output, err
 
-# TODO: add videos path as a config item
 def dl(url):
     print("Downloading {}".format(url))
     cmd = [
         '/usr/bin/python3', '/usr/local/bin/youtube-dl', '-w',
         '-f', '(bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best)',
         '--merge-output-format', 'mp4',
-        '-o', os.path.join(config['dl_path'], '%(title)s.%(ext)s'),
+        '-o', os.path.join(config.dl_path, '%(title)s.%(ext)s'),
         url
     ]
-    t = threading.Thread(target=termy, args=(cmd,), daemon=True)
+    t = threading.Thread(target=termy, args=(cmd,))
     t.start()
