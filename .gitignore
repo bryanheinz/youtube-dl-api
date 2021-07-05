@@ -7,3 +7,4 @@ Pods
 *.xcworkspace
 videos/*
 ydl.conf
+config.py
