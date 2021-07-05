@@ -1,21 +1,17 @@
 #!/usr/bin/env python3
 import os
 import youdl
-import app_config
+import config
 import base64 as b64
 from flask import Flask, render_template, redirect, request, jsonify, abort, Response
 
 
-config = app_config.get_config()
-
-if config:
-    api_key = config['api_key']
-    flask_key = config = ['flask_key']
+api_key = config.api_key
+flask_key = config.flask_key
 
 
 app = Flask(__name__)
 app.secret_key = flask_key
-api_key = api_key
 
 
 # check for API key in the headers
@@ -24,13 +20,9 @@ def checkAppKey(fn):
         try:
             key = request.headers.get('api_key')
             if key != api_key:
-                raise(abort(
-                    Response("access denied", status=401)
-                ))
+                abort(Response("access denied", status=401))
         except KeyError:
-            raise(abort(
-                Response("invalid request", status=400)
-            ))
+            abort(Response("invalid request", status=400))
         return fn(*args, **kwargs)
     inner.__name__ = fn.__name__
     return inner
@@ -39,7 +31,7 @@ def checkAppKey(fn):
 @app.route('/')
 @checkAppKey
 def hello_world():
-    return(Response(status=200))
+    return Response(status=200)
 
 @app.route('/youtube-dl', methods=['GET', 'POST'])
 @checkAppKey
@@ -48,23 +40,16 @@ def youtube_dl():
     try:
         url = content['url']
     except KeyError:
-        raise(abort(Response(
-            "please include a video URL for the key 'url'.",
-            status=400
-        )))
-    
-    # youdl.dl(url)
+        abort(Response(
+            "please include a video URL for the key 'url'.", status=400))
     
     try:
         youdl.dl(url)
     except Exception as e:
-        print(e)
-        raise(abort(Response(
-            "internal server error",
-            status=500
-        )))
+        print(e, flush=True)
+        abort(Response("internal server error", status=500))
     
-    return(Response(status=200))
+    return Response(status=200)
 
 
 if __name__ == '__main__':
