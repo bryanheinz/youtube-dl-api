@@ -1,18 +1,16 @@
-FROM alpine:3.9.5
+FROM alpine:3.14
 
-RUN apk update && apk add \
+RUN apk add --no-cache \
     ffmpeg \
     python3 \
     py3-flask \
-    py3-gunicorn \
-    && wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl \
-    && chmod a+rx /usr/local/bin/youtube-dl
+    py3-gunicorn
 
 COPY ./app /app
+COPY ./startup.sh /startup.sh
 
 WORKDIR /app
 
 EXPOSE 5000
 
-ENTRYPOINT ["gunicorn"]
-CMD ["-w", "4", "-b", "0.0.0.0:5000", "app:app"]
+CMD ["/startup.sh"]
