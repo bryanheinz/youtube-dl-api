@@ -8,3 +8,4 @@ Pods
 videos/*
 ydl.conf
 config.py
+docker-compose.yml
