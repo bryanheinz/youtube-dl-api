@@ -22,7 +22,8 @@ downloads = '/downloads'
 # where to place download temp files
 downloads_tmp = '/dl_tmp'
 # where to place yt-dlp and youtube-dl config files
-downloader_configs = '/configs'
+# reserved for the future, currently doesn't work
+# downloader_configs = '/configs'
 
 # -- #
 
