@@ -12,3 +12,4 @@ services:
         volumes: 
             - ./downloads:/downloads
             - ./config.py:/app/config.py
+            # - ./configs/yt-dlp.conf:/root/yt-dlp.conf
