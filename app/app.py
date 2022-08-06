@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-import os
+
 import youdl
 import config
-import base64 as b64
-from flask import Flask, render_template, redirect, request, jsonify, abort, Response
+from flask import Flask, request, abort, Response
 
+
+__version__ = '1.1.0'
 
 api_key = config.api_key
 flask_key = config.flask_key
@@ -36,7 +37,13 @@ def hello_world():
 @app.route('/youtube-dl', methods=['GET', 'POST'])
 @checkAppKey
 def youtube_dl():
-    content = request.json
+    try:
+        use_ytdl = request.args.get('ytdl')
+        content = request.json
+    except Exception as e:
+        print(e, flush=True)
+        abort(Response(f"Error processing request.", 500))
+    
     try:
         url = content['url']
     except KeyError:
@@ -44,12 +51,16 @@ def youtube_dl():
             "please include a video URL for the key 'url'.", status=400))
     
     try:
-        youdl.dl(url)
+        if use_ytdl:
+            youdl.dl(url)
+        else:
+            youdl.ytdlp(url)
     except Exception as e:
         print(e, flush=True)
         abort(Response("internal server error", status=500))
     
-    return Response(status=200)
+    return Response(
+        {'response':'downloading video'}, status=200, mimetype='application/json')
 
 
 if __name__ == '__main__':

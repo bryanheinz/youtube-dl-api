@@ -10,5 +10,6 @@ services:
         ports: 
             - 5000:5000
         volumes: 
-            - ./videos:/videos
+            - ./downloads:/downloads
             - ./config.py:/app/config.py
+            # - ./configs/yt-dlp.conf:/root/yt-dlp.conf
