@@ -7,6 +7,7 @@ RUN apk add --no-cache \
     py3-gunicorn
 
 COPY ./app /app
+COPY ./configs/yt-dlp.conf /root/yt-dlp.conf
 COPY ./startup.sh /startup.sh
 
 WORKDIR /app

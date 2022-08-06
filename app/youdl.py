@@ -48,15 +48,13 @@ def dl(url):
     t = threading.Thread(target=termy, args=(cmd,))
     t.start()
 
-# TODO: implement and test config files
 def ytdlp(url):
     print(f"Downloading {url}...", flush=True)
     cmd = [
         'yt-dlp',
-        '-P', f'home:{config.downloader_configs}',
+        # '-P', f'home:{config.downloader_configs}', # currently doesn't work
         '-P', f'temp:{config.downloads_tmp}',
         '-P', f'{config.downloads}',
-        '--windows-filenames',
         '-f', 'bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b',
         url
     ]
